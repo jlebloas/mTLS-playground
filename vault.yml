@@ -1,0 +1,37 @@
+#  https://github.com/hashicorp/vault-helm/blob/main/values.yaml
+global:
+  enabled: true
+
+injector:
+  enabled: false
+
+server:
+  enabled: true
+  updateStrategyType: "RollingUpdate"
+  logLevel: "info"
+  logFormat: "standard"
+  ingress:
+    enabled: true
+    hosts:
+      - host: vault.local
+    tls: []
+  hostAliases:
+  - ip: 127.0.0.1
+    hostnames:
+      - vault.local
+  dev:
+    enabled: true
+    devRootToken: "root"
+  standalone:
+    enabled: true
+    config: |
+      ui = true
+
+      listener "tcp" {
+        tls_disable = 1
+        address = "[::]:8200"
+        cluster_address = "[::]:8201"
+      }
+      storage "file" {
+        path = "/vault/data"
+      }

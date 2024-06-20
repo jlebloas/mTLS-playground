@@ -1,0 +1,9 @@
+.terraform
+*.tfstate
+*.tfstate.backup
+root_ca.pem
+client.pem
+client.key
+backend.pem
+backend.key
+*.p12
